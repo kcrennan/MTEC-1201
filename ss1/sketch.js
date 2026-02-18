@@ -1,7 +1,7 @@
 
 /* Kate C
 
-just a blue building at 
+blue building at night?
 
 */
 
