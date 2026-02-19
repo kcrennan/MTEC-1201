@@ -1,7 +1,8 @@
 
 /* Kate C
 
-blue building at night grows a bit
+blue building at night but like cooler
+hoover over building to turn off the light
 
 */
 
@@ -36,6 +37,7 @@ function draw() //30fps
  //moon
   strokeWeight(3);
   fill(240,240,191); //yellow
+
   circle(moonX,moonY,80); // moon on top right
 //windows and window RGB if statement
   if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)
@@ -43,6 +45,8 @@ function draw() //30fps
     winR = 0;
     winG = 0;
     winB = 0;
+    moonY++;
+
   }
   
   fill(winR,winG,winB);//window color
@@ -59,11 +63,6 @@ function draw() //30fps
 }
 function mousePressed()
 {
-  moonX +=10;
-  if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)
-  {
-    winR += 10;
-    winG += 10;
-    winB += 10;
-  }
+  moonX +=20;
+  
 }
