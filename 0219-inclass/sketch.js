@@ -1,11 +1,3 @@
-
-/* Kate C
-
-blue building at night?
-
-*/
-
-
 function setup() 
 {
   createCanvas(800, 600);
@@ -14,7 +6,6 @@ function setup()
 
 function draw() 
 {
-strokeWeight(3);
-line(0,0,400,300);
+  
 
 }

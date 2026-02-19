@@ -1,10 +1,15 @@
 
 /* Kate C
 
-blue building at night?
+blue building at night grows a bit
 
 */
 
+let winR = 255;
+let winG = 255;
+let winB = 191;
+let moonX = 450;
+let moonY = 55;
 
 function setup() 
 {
@@ -12,11 +17,9 @@ function setup()
   background(0,0,200); //blue bg
 }
 
-function draw() 
+function draw() //30fps
 {
-  let winR = 255;
-  let winG = 255;
-  let winB = 191;
+  
 //shrubfence thing
   strokeWeight(3);
   fill(92,169,4);//green    
@@ -33,14 +36,15 @@ function draw()
  //moon
   strokeWeight(3);
   fill(240,240,191); //yellow
-  circle(450,55,80); // moon on top right
+  circle(moonX,moonY,80); // moon on top right
 //windows and window RGB if statement
-  if (mouseX>39  && mouseX <241)
+  if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)
   {
     winR = 0;
     winG = 0;
     winB = 0;
   }
+  
   fill(winR,winG,winB);//window color
   rect(80,50,30,50);//window 1R
   rect(170,50,30,50);//window 1L
@@ -52,6 +56,14 @@ function draw()
   rect(170,260,30,50);//window 4L
   rect(80,330,30,50);//window 5R
   rect(170,330,30,50);//window 5L
-
-
+}
+function mousePressed()
+{
+  moonX +=10;
+  if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)
+  {
+    winR += 10;
+    winG += 10;
+    winB += 10;
+  }
 }
