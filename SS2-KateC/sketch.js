@@ -18,9 +18,17 @@ function setup()
   background(0,0,200); //blue bg
 }
 
-function draw() //30fps
+function draw() 
 {
   
+
+
+  //text
+  textSize(15);
+  fill(255);
+  text('hover mouse over the building!',40,25);
+  text('click and drag to make the moon move!', 260,380);
+
 //shrubfence thing
   strokeWeight(3);
   fill(92,169,4);//green    
@@ -37,18 +45,8 @@ function draw() //30fps
  //moon
   strokeWeight(3);
   fill(240,240,191); //yellow
-
   circle(moonX,moonY,80); // moon on top right
-//windows and window RGB if statement
-  if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)
-  {
-    winR = 0;
-    winG = 0;
-    winB = 0;
-    moonY++;
-
-  }
-  
+ //window
   fill(winR,winG,winB);//window color
   rect(80,50,30,50);//window 1R
   rect(170,50,30,50);//window 1L
@@ -60,9 +58,20 @@ function draw() //30fps
   rect(170,260,30,50);//window 4L
   rect(80,330,30,50);//window 5R
   rect(170,330,30,50);//window 5L
+  //windows and window RGB if statement
+   if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)//building coords
+  {
+    winR = 0;//if mouse is on building, lights turn off
+    winG = 0;
+    winB = 0;
+  }
+  else{
+    winR = 255;//else building on
+    winG = 255;
+    winB = 191;
+  }
 }
-function mousePressed()
-{
-  moonX +=20;
-  
-}
+function mouseDragged(){
+    moonX ++;
+    moonY ++;
+  }
