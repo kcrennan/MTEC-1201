@@ -3,6 +3,7 @@
 
 blue building at night but like cooler
 hoover over building to turn off the light
+drag mouse to make the moon move
 
 */
 
@@ -20,9 +21,9 @@ function setup()
 
 function draw() 
 {
-  
-
-
+  //bg
+fill(0,0,200);
+rect(0,0,width,height);
   //text
   textSize(15);
   fill(255);
