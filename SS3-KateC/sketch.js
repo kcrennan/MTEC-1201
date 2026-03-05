@@ -1,8 +1,7 @@
+
 /* Kate C
 
-blue building at night but like cooler
-hoover over building to turn off the light
-drag mouse to make the moon move
+press c to random color the building
 
 */
 
