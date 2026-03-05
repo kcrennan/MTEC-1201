@@ -2,12 +2,13 @@
 //
 // if statement; one image; text; function millis
 // every 10 seconds a taxi goes across
-let time;
-let timer = 10;
+let currentTime = 0;
+let savedTime =0;
+let timer;
 let building;
 let taxi;
 let taxiX = 0;
-let taxiY = 1500
+let taxiY = 1535
 function preload(){
   building =  loadImage('/libraries/images/buildings.png');
   taxi = loadImage('/libraries/images/taxi.png');
@@ -17,21 +18,28 @@ function setup() {
   imageMode(CENTER);
 }
 
-function draw() {
+function draw() 
+{
   background(220);
-  time = millis()/1000;
-
+  currentTime = millis()/1000;
   image(building,1300,815); //buildings
   fill(255);
   textSize(50)
-  text(time ,width/4,height/10);
+  //text(currentTime,width/8,height/10); trouble shooting
+  //text(savedTime ,width/8,height/8);
 
-  if(time <= timer)
+
+  timer =10;
+
+  if(currentTime-savedTime <= timer)//want it to happen every 10 seconds 
   {//code to have taxi move across 
-     timer+=10;
+    image(taxi,taxiX+=5,taxiY);
 
-  image(taxi,taxiX+=7,taxiY);
+    if(taxiX >width){
+      taxiX =0; //rest taxi when reached end
+    }
   
+  savedTime=currentTime;
   }
   
 }
