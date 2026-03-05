@@ -31,7 +31,10 @@ rect(0,0,width,height);
   fill(255);
   text('hover mouse over the building!',40,25);
   text('click and drag to make the moon move!', 530,30);
-  text('press c to change the color!',300,60)
+  text('press c to change the color!',300,50);
+  text('press r to reset the color.c',310,70);
+
+
 //shrubfence thing
   strokeWeight(3);
   fill(92,169,4);//green    
@@ -92,5 +95,10 @@ function keyPressed(){
     twoR = random(72, 231);
     twoG = random(0, 170);
     twoB = random(30, 255);
+  }
+  else if(key === 'r'){
+  twoR = 112;
+  twoG = 41;
+  twoB = 99;
   }
 }
