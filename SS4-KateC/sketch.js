@@ -24,10 +24,10 @@ function draw()
   currentTime = millis()/1000;
   image(building,1300,815); //buildings
   fill(255);
-  textSize(50)
+  textSize(60)
   //text(currentTime,width/8,height/10); trouble shooting
   //text(savedTime ,width/8,height/8);
-
+text(`${round(currentTime, 2)}`, 5, 50, 90);
 
   timer =10;
 
