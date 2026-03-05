@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Kate C
 
 blue building at night but like cooler
@@ -95,3 +96,12 @@ function keyPressed(){
     twoB = random(30, 255);
   }
 }
+=======
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(220);
+}
+>>>>>>> 3b509ff83759f693e731208f11aef27566b103a8
