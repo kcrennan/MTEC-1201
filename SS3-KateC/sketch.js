@@ -2,6 +2,7 @@
 /* Kate C
 
 press c to random color the building
+presss r to reset it
 
 */
 
@@ -59,7 +60,7 @@ rect(0,0,width,height);
  fill(twoR+30,twoG+30,twoB+30);
  rect(355,430,80,70);
  line(395,430,395,500);
- //window
+ //windows blue building
   fill(winR,winG,winB);//window color
   rect(80,50,30,50);//window 1R
   rect(170,50,30,50);//window 1L
@@ -71,6 +72,17 @@ rect(0,0,width,height);
   rect(170,260,30,50);//window 4L
   rect(80,330,30,50);//window 5R
   rect(170,330,30,50);//window 5L
+  //windows building 2 
+  fill(255,255,191);
+  rect(340,100,30,50); //1R
+  rect(420,100,30,50); //1L
+  rect(340,170,30,50); //2R 
+  rect(420,170,30,50); //2L
+  rect(340,240,30,50); //3R
+  rect(420,240,30,50); //3L
+  rect(340,310,30,50); //4R
+  rect(420,310,30,50); //4L
+  
 
   //windows and window RGB if statement
    if (mouseX>39  && mouseX <241 && mouseY>39 && mouseY<500)//building coords
@@ -90,7 +102,7 @@ function mouseDragged(){
     moonY ++;
   }
 
-function keyPressed(){
+function keyPressed(){//changes color of building 2
   if(key === 'c'){
     twoR = random(72, 231);
     twoG = random(0, 170);
