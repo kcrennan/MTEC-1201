@@ -1,6 +1,6 @@
 //kate c
 //
-// if statement; one image; text; function millis
+// if statement; one image
 // every 10 seconds a taxi goes across
 let currentTime = 0;
 let savedTime =0;
@@ -20,7 +20,7 @@ function setup() {
 
 function draw() 
 {
-  background(220);
+  background(137, 207, 240);
   currentTime = millis()/1000;
   image(building,1300,815); //buildings
   fill(255);
