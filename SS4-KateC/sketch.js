@@ -1,9 +1,11 @@
 //kate c
 //
-// if statement; one image
 // every 10 seconds a taxi goes across
 //tried to do timer byself. couldnt do it and had to use github 
 //took tooo long for how simple the drawing is  :/
+//
+//may expand more, make it like a moving wallpaper kinda
+//
 let currentTime = 0;
 let savedTime =0;
 let timer;
@@ -34,14 +36,14 @@ text(`${round(currentTime, 2)}`, 5, 50, 90);
   timer =10;
 
   if(currentTime-savedTime <= timer)//want it to happen every 10 seconds 
-  {//code to have taxi move across 
-    image(taxi,taxiX+=5,taxiY);
-
-    if(taxiX >width){
+  {
+    image(taxi,taxiX+=5,taxiY); //code to have taxi move across 
+    if(taxiX>width)
+    {
       taxiX =0; //rest taxi when reached end
     }
   
-  savedTime=currentTime;
+    savedTime=currentTime;
   }
   
 }
