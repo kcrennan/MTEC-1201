@@ -34,9 +34,12 @@ function setup()
 
 function draw() 
 {
-  if(mouseIsPressed===true)
+  if(keyIsPressed===true)
   {
-    buildings();
+    keyIsDown(66)//b
+    {
+      buildings();
+    }
   }
   else{
     homemadeBuildings();
@@ -156,4 +159,8 @@ function keyPressed(){//changes color of building 2
   twoG = 41;
   twoB = 99;
   }
+  //else if(key === 'b')
+  //{
+
+  //}
 }
