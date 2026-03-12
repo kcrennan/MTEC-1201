@@ -2,13 +2,15 @@
 //
 // if statement; one image
 // every 10 seconds a taxi goes across
+//tried to do timer byself. couldnt do it and had to use github 
+//took tooo long for how simple the drawing is  :/
 let currentTime = 0;
 let savedTime =0;
 let timer;
 let building;
 let taxi;
 let taxiX = 0;
-let taxiY = 1535
+let taxiY = 1544;
 function preload(){
   building =  loadImage('/libraries/images/buildings.png');
   taxi = loadImage('/libraries/images/taxi.png');
