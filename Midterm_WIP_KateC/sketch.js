@@ -26,6 +26,9 @@ let roadB = 1700;
 let roadC = 2200;
 let roadD = 350;
 let roadE = 800;
+let parkX = 350;
+let parkY = 130;
+let offset = 50;
 
 
 
@@ -42,19 +45,32 @@ function setup()
 
 function draw() 
 {
-  if(keyIsPressed===true)
+
+ if(mouseClicked && mouseX>150 && mouseX<550 && mouseY>950 &&mouseY<1450)
   {
-    keyIsDown(66)//b
-    {
-      homemadeBuildings();
-    }
+   game1();
   }
-  else
+else if(mouseClicked && mouseX>900 && mouseX<1600 && mouseY>1000 &&mouseY<1500)
+  {
+    game2();
+  }
+else if(mouseClicked && mouseX>1800 && mouseX<2100 && mouseY>450 &&mouseY<700)
+  {
+    game3();
+  }
+else if(mouseClicked && mouseX>2400 && mouseX<2900 && mouseY>900 &&mouseY<1500)
+  {
+    endScene();
+  }
+else
   {
     mainMenu();
   }
-  
+
+
 }
+
+
 function mainMenu()
 {
 
@@ -76,14 +92,23 @@ function mainMenu()
   if(mouseX>roadA-65 && mouseX<roadA+65 || mouseX>roadB-65 && mouseX<roadB+65 || mouseX>roadC-65 && mouseX<roadC+65)
     { 
       image(taxi,mouseX,mouseY);
+      parkX = mouseX-offset;
+      parkY = mouseY-offset;
     }
  else if(mouseY>roadD-65 && mouseY<roadD+65 || mouseY>roadE-65 && mouseY<roadE+65)
     {
       image(taxi,mouseX,mouseY);
+      parkX = mouseX-offset;
+      parkY = mouseY-offset;
+    }
+  else if(keyIsDown(80)=== true)
+    {
+    parkX = 350;
+    parkY = 130;
     }
   else
     {
-      image(taxi,0,0);
+      image(taxi,parkX,parkY);
     }  
   
 
@@ -186,6 +211,34 @@ rect(0,0,width,height);
     winB = 191;
   }
 }
+function game1()
+{
+  fill(255);
+  rect(0,0,width,height);
+  fill(0);
+  text('game 1',width/2,height/2);
+}
+function game2()
+{
+  fill(255);
+  rect(0,0,width,height);
+  fill(0);
+  text('game 2',width/2,height/2);
+}
+function game3()
+{
+  fill(255);
+  rect(0,0,width,height);
+  fill(0);
+  text('game 3',width/2,height/2);
+}
+function endScene()
+{
+   fill(255);
+  rect(0,0,width,height);
+  fill(0);
+text('end',width/2,height/2);
+}
 function mouseDragged(){
     moonX ++;
     moonY ++;
@@ -213,36 +266,56 @@ function keyPressed(){//changes color of building 2
 stroke weight 130, so -65 and +65
 
 
-if(MouseX<roadA-65 && MouseX>roadA+65 || MouseX<roadB-65 && MouseX>roadB+65 || MouseX<roadC-65 && MouseX>roadC+65)
-{
-image(taxi,mouseX,mouseY);
-}
-else if(MouseY<roadD-65 && MouseY>roadD+65 || MouseY<roadE-65 && MouseY>roadE+65)
-{
-image(taxi,mouseX,mouseY);
-}
+  
+  if(mouseClicked && mouseX>150 && mouseX<550 && mouseY>950 &&mouseY<1450)
+  {
+   game1();
+  }
+  else if(mouseClicked && mouseX>900 && mouseX<1600 && mouseY>1000 &&mouseY<1500)
+  {
+    game2();
+  }
+    else if(mouseClicked && mouseX>1800 && mouseX<2100 && mouseY>450 &&mouseY<700)
+  {
+    game3();
+  }
+    else if(mouseClicked && mouseX>2400 && mouseX<2900 && mouseY>900 &&mouseY<1500)
+  {
+    endScene();
+  }
+  else
+  {
+    mainMenu();
+  }
 
 
 }
-line(800,0,800,1600);
-line(1700,0,1700,1600);
-line(2200,0,2200,1600);
-line(0,350,3000,350);
-line(0,800,3000,800);
 
 
 
 
-
-function gameOne()
+function game1()
 {
-background(255);
+  background(255);
+  text('game 1',width/2,height/2);
 }
-function gameTwo()
+function game2()
 {
-background(255);
+  background(255);
+  text('game 2',width/2,height/2);
 }
-function gameThree()
+function game3()
 {
-background(255);
-}*/ 
+  background(255);
+  text('game 3',width/2,height/2);
+}
+function endScene()
+{
+text('end',width/2,height/2);
+}
+
+
+
+
+
+*/ 
