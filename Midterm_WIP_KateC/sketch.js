@@ -42,21 +42,52 @@ function setup()
 
 function draw() 
 {
-if(keyIsPressed===true)
+  if(keyIsPressed===true)
   {
     keyIsDown(66)//b
     {
       homemadeBuildings();
     }
   }
-  else{
+  else
+  {
     mainMenu();
-
-    
   }
   
 }
+function mainMenu()
+{
 
+  strokeWeight(1);
+  fill(112,41,99);
+  rect(0,0,width,height);
+  strokeWeight(130);
+  line(roadA,0,roadA,1600);
+  line(roadB,0,roadB,1600);
+  line(roadC,0,roadC,1600);
+  line(0,roadD,3000,roadD);
+  line(0,roadE,3000,roadE);//
+  strokeWeight(10);
+  rect(150,30,400,200);//start
+  rect(150,950,400,500);//game1
+  rect(900,1000,700,500);//game2
+  rect(1800,450,300,250);//game3
+  rect(2400,900,500,600);//end
+  if(mouseX>roadA-65 && mouseX<roadA+65 || mouseX>roadB-65 && mouseX<roadB+65 || mouseX>roadC-65 && mouseX<roadC+65)
+    { 
+      image(taxi,mouseX,mouseY);
+    }
+ else if(mouseY>roadD-65 && mouseY<roadD+65 || mouseY>roadE-65 && mouseY<roadE+65)
+    {
+      image(taxi,mouseX,mouseY);
+    }
+  else
+    {
+      image(taxi,0,0);
+    }  
+  
+
+}
 function buildings()
 {
   background(137, 207, 240);
@@ -155,27 +186,6 @@ rect(0,0,width,height);
     winB = 191;
   }
 }
-function mainMenu(){
-  strokeWeight(1);
-  fill(112,41,99);
- rect(0,0,width,height);
-strokeWeight(130);
-line(roadA,0,roadA,1600);
-line(roadB,0,roadB,1600);
-line(roadC,0,roadC,1600);
-line(0,roadD,3000,roadD);
-line(0,roadE,3000,roadE);
-
-image(taxi,mouseX,mouseY);//wanna do wasd too
-
-
-strokeWeight(10);
-rect(150,30,400,200);//start
-rect(150,950,400,500);//game1
-rect(900,1000,700,500);//game2
-rect(1800,450,300,250);//game3
-rect(2400,900,500,600);//end
-}
 function mouseDragged(){
     moonX ++;
     moonY ++;
@@ -203,10 +213,13 @@ function keyPressed(){//changes color of building 2
 stroke weight 130, so -65 and +65
 
 
-if(MouseX<roadA-65 && MouseX>roadA+65 || MouseX<roadb-65 && MouseX>roadb+65 || MouseX<roadC-65 && MouseX>roadC+65)
+if(MouseX<roadA-65 && MouseX>roadA+65 || MouseX<roadB-65 && MouseX>roadB+65 || MouseX<roadC-65 && MouseX>roadC+65)
 {
-image(taxi,mouseX,mouseY);//wanna do wasd too
-
+image(taxi,mouseX,mouseY);
+}
+else if(MouseY<roadD-65 && MouseY>roadD+65 || MouseY<roadE-65 && MouseY>roadE+65)
+{
+image(taxi,mouseX,mouseY);
 }
 
 
