@@ -10,7 +10,6 @@ let currentTime = 0;
 let savedTime =0;
 let timer;
 let building;
-let mainMenu;
 let taxi;
 let taxiX = 0;
 let taxiY = 1544;
@@ -22,11 +21,7 @@ let moonY = 80;
 let twoR = 112;
 let twoG = 41;
 let twoB = 99;
-//let start;
-//let gameOne;
-//let gameTwo;
-//let gameThree;
-//let silly;
+
 function preload()
 {
   building =  loadImage('/libraries/images/buildings.png');
@@ -39,7 +34,7 @@ function setup()
 }
 
 function draw() 
-{/*
+{
 if(keyIsPressed===true)
   {
     keyIsDown(66)//b
@@ -48,12 +43,11 @@ if(keyIsPressed===true)
     }
   }
   else{
-    mainMenu();{
+    mainMenu();
 
-    }
+    
   }
-  */
- mainMenu();
+  
 }
 
 function buildings()
@@ -155,12 +149,23 @@ rect(0,0,width,height);
   }
 }
 function mainMenu(){
+  strokeWeight(1);
   fill(112,41,99);
  rect(0,0,width,height);
+strokeWeight(135);
+line(800,0,800,1600);
+line(1700,0,1700,1600);
+line(2200,0,2200,1600);
+line(0,350,3000,350);
+line(0,800,3000,800);
+image(taxi,mouseX,mouseY);
 
-strokeWeight(30);
-line(800,0,800,160);
-
+strokeWeight(10);
+rect(150,30,400,200);//start
+rect(150,950,400,500);//game1
+rect(900,1000,700,500);//game2
+rect(1800,450,300,250);//game3
+rect(2400,900,500,600);//end
 }
 function mouseDragged(){
     moonX ++;
