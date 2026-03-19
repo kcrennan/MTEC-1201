@@ -29,7 +29,7 @@ let roadE = 800;
 let parkX = 350;
 let parkY = 130;
 let offset = 50;
-
+let scene = mainMenu;
 
 
 function preload()
@@ -45,32 +45,30 @@ function setup()
 
 function draw() 
 {
-
- if(mouseClicked && mouseX>150 && mouseX<550 && mouseY>950 &&mouseY<1450)
+  scene();
+}
+function mouseClicked(){
+if(mouseX>150 && mouseX<550 && mouseY>950 &&mouseY<1450)
   {
-   game1();
+   scene = game1;
   }
-else if(mouseClicked && mouseX>900 && mouseX<1600 && mouseY>1000 &&mouseY<1500)
+else if(mouseX>900 && mouseX<1600 && mouseY>1000 &&mouseY<1500)
   {
-    game2();
+    scene = game2;
   }
-else if(mouseClicked && mouseX>1800 && mouseX<2100 && mouseY>450 &&mouseY<700)
+else if(mouseX>1800 && mouseX<2100 && mouseY>450 &&mouseY<700)
   {
-    game3();
+    scene = game3;
   }
-else if(mouseClicked && mouseX>2400 && mouseX<2900 && mouseY>900 &&mouseY<1500)
+else if(mouseX>2400 && mouseX<2900 && mouseY>900 &&mouseY<1500)
   {
-    endScene();
+     scene = endScene;
   }
 else
   {
-    mainMenu();
+    scene = mainMenu;
   }
-
-
 }
-
-
 function mainMenu()
 {
 
@@ -147,7 +145,7 @@ rect(0,0,width,height);
   text('hover mouse over the building!',40,25);
   text('click and drag to make the moon move!', 530,30);
   text('press c to change the color!',300,50);
-  text('press r to reset the color.c',310,70);
+  text('press m to reset the color.c',310,70);
 
 
 //shrubfence thing
@@ -216,28 +214,48 @@ function game1()
   fill(255);
   rect(0,0,width,height);
   fill(0);
+  textSize(50)
   text('game 1',width/2,height/2);
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
 }
 function game2()
 {
   fill(255);
   rect(0,0,width,height);
   fill(0);
+  textSize(50)
   text('game 2',width/2,height/2);
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
 }
 function game3()
 {
   fill(255);
   rect(0,0,width,height);
   fill(0);
+  textSize(50)
   text('game 3',width/2,height/2);
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
 }
 function endScene()
 {
-   fill(255);
-  rect(0,0,width,height);
-  fill(0);
-text('end',width/2,height/2);
+  fill(255);
+  rect(0,0,width,height)
+  fill(0)
+  textSize(50)
+  text('The End!',width/2,height/2);
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
 }
 function mouseDragged(){
     moonX ++;
@@ -250,15 +268,11 @@ function keyPressed(){//changes color of building 2
     twoG = random(0, 170);
     twoB = random(30, 255);
   }
-  else if(key === 'r'){
+  else if(key === 'm'){
   twoR = 112;
   twoG = 41;
   twoB = 99;
   }
-  //else if(key === 'b')
-  //{
-
-  //}
 }
 
 
