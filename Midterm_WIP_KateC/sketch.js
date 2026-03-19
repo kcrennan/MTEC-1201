@@ -27,6 +27,8 @@ let roadC = 2200;
 let roadD = 350;
 let roadE = 800;
 
+
+
 function preload()
 {
   building =  loadImage('/libraries/images/buildings.png');
@@ -163,7 +165,9 @@ line(roadB,0,roadB,1600);
 line(roadC,0,roadC,1600);
 line(0,roadD,3000,roadD);
 line(0,roadE,3000,roadE);
+
 image(taxi,mouseX,mouseY);//wanna do wasd too
+
 
 strokeWeight(10);
 rect(150,30,400,200);//start
@@ -196,8 +200,15 @@ function keyPressed(){//changes color of building 2
 
 
 /*
-if(MouseX===0){
+stroke weight 130, so -65 and +65
+
+
+if(MouseX<roadA-65 && MouseX>roadA+65 || MouseX<roadb-65 && MouseX>roadb+65 || MouseX<roadC-65 && MouseX>roadC+65)
+{
 image(taxi,mouseX,mouseY);//wanna do wasd too
+
+}
+
 
 }
 line(800,0,800,1600);
