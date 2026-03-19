@@ -21,6 +21,11 @@ let moonY = 80;
 let twoR = 112;
 let twoG = 41;
 let twoB = 99;
+let roadA = 800;
+let roadB = 1700;
+let roadC = 2200;
+let roadD = 350;
+let roadE = 800;
 
 function preload()
 {
@@ -152,13 +157,13 @@ function mainMenu(){
   strokeWeight(1);
   fill(112,41,99);
  rect(0,0,width,height);
-strokeWeight(135);
-line(800,0,800,1600);
-line(1700,0,1700,1600);
-line(2200,0,2200,1600);
-line(0,350,3000,350);
-line(0,800,3000,800);
-image(taxi,mouseX,mouseY);
+strokeWeight(130);
+line(roadA,0,roadA,1600);
+line(roadB,0,roadB,1600);
+line(roadC,0,roadC,1600);
+line(0,roadD,3000,roadD);
+line(0,roadE,3000,roadE);
+image(taxi,mouseX,mouseY);//wanna do wasd too
 
 strokeWeight(10);
 rect(150,30,400,200);//start
@@ -191,6 +196,20 @@ function keyPressed(){//changes color of building 2
 
 
 /*
+if(MouseX===0){
+image(taxi,mouseX,mouseY);//wanna do wasd too
+
+}
+line(800,0,800,1600);
+line(1700,0,1700,1600);
+line(2200,0,2200,1600);
+line(0,350,3000,350);
+line(0,800,3000,800);
+
+
+
+
+
 function gameOne()
 {
 background(255);
