@@ -123,7 +123,7 @@ function buildings()
   text(`${round(currentTime, 2)}`, 5, 50, 90);
   timer =10;
 
-  if(currentTime-savedTime <= timer)//want it to happen every 10 seconds 
+  if(currentTime-savedTime >= timer)//want it to happen every 10 seconds 
   {
     image(taxi,taxiX+=5,taxiY); //code to have taxi move across 
     if(taxiX>width)
