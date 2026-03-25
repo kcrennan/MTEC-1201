@@ -149,7 +149,7 @@ function game1()//picture buildings w/moving taxi
 
   
 }
-function homemadeBuildings()//ex homemade buildings
+function game2()//ex homemade buildings
 {
 fill(0,0,200);
 rect(0,0,width,height);
@@ -222,20 +222,13 @@ rect(0,0,width,height);
     winG = 255;
     winB = 191;
   }
-}
-
-function game2()
-{
-  fill(255);
-  rect(0,0,width,height);
-  fill(0);
-  textSize(50)
-  text('game 2',width/2,height/2);
   if(keyIsDown(82)===true)//r to reset
   {
     scene = mainMenu;
   }
 }
+
+
 function game3()
 {
   fill(255);
