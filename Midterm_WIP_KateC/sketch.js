@@ -12,7 +12,7 @@ let timer;
 let building;
 let taxi;
 let taxiX = 0;
-let taxiY = 1544;
+let taxiY = 1030;
 let winR = 255;
 let winG = 255;
 let winB = 191;
@@ -21,15 +21,16 @@ let moonY = 80;
 let twoR = 112;
 let twoG = 41;
 let twoB = 99;
-let roadA = 800;
-let roadB = 1700;
-let roadC = 2200;
-let roadD = 350;
-let roadE = 800;
+let roadA = 600;
+let roadB = 1000;
+let roadC = 1600;
+let roadD = 300;
+let roadE = 540;
 let parkX = 350;
 let parkY = 130;
 let offset = 50;
 let scene = mainMenu;
+
 
 
 function preload()
@@ -39,7 +40,7 @@ function preload()
 }
 function setup() 
 {
-  createCanvas(3000, 1600);
+  createCanvas(1920, 1080);
   imageMode(CENTER);
 }
 
@@ -48,19 +49,18 @@ function draw()
   scene();
 }
 function mouseClicked(){
-if(mouseX>150 && mouseX<550 && mouseY>950 &&mouseY<1450)
-  {
+if(mouseX>50 && mouseX<450 && mouseY>620 &&mouseY<1020)  {
    scene = game1;
   }
-else if(mouseX>900 && mouseX<1600 && mouseY>1000 &&mouseY<1500)
+else if(mouseX>700 && mouseX<900 && mouseY>620 &&mouseY<1020)
   {
     scene = game2;
   }
-else if(mouseX>1800 && mouseX<2100 && mouseY>450 &&mouseY<700)
+else if(mouseX>1100 && mouseX<1500 && mouseY>360 &&mouseY<480)
   {
     scene = game3;
   }
-else if(mouseX>2400 && mouseX<2900 && mouseY>900 &&mouseY<1500)
+else if(mouseX>1675 && mouseX<1875 && mouseY>900 &&mouseY<1500)
   {
      scene = endScene;
   }
@@ -71,29 +71,35 @@ else
 }
 function mainMenu()
 {
-
   strokeWeight(1);
   fill(112,41,99);
   rect(0,0,width,height);
-  strokeWeight(130);
+  strokeWeight(100);
   line(roadA,0,roadA,1600);
   line(roadB,0,roadB,1600);
   line(roadC,0,roadC,1600);
   line(0,roadD,3000,roadD);
   line(0,roadE,3000,roadE);//
   strokeWeight(10);
-  rect(150,30,400,200);//start
-  rect(150,950,400,500);//game1
-  rect(900,1000,700,500);//game2
-  rect(1800,450,300,250);//game3
-  rect(2400,900,500,600);//end
-  if(mouseX>roadA-65 && mouseX<roadA+65 || mouseX>roadB-65 && mouseX<roadB+65 || mouseX>roadC-65 && mouseX<roadC+65)
+  rect(50,30,400,200);//start
+  rect(50,620,400,400);//game1
+  rect(700,620,200,400);//game2
+  rect(1100,360,400,120);//game3
+  rect(1675,600,200,400);//end
+  fill(0);
+  textSize(30);
+  text('move the car around ',660,30);
+  text('with the mouse!',690, 70);
+  text('Once near a building',660,120);
+  text('click it to proceed!',680,160);
+
+  if(mouseX>roadA-50 && mouseX<roadA+50 || mouseX>roadB-50 && mouseX<roadB+50 || mouseX>roadC-50 && mouseX<roadC+50)
     { 
       image(taxi,mouseX,mouseY);
       parkX = mouseX-offset;
       parkY = mouseY-offset;
     }
- else if(mouseY>roadD-65 && mouseY<roadD+65 || mouseY>roadE-65 && mouseY<roadE+65)
+ else if(mouseY>roadD-50 && mouseY<roadD+50 || mouseY>roadE-50 && mouseY<roadE+50)
     {
       image(taxi,mouseX,mouseY);
       parkX = mouseX-offset;
@@ -111,31 +117,39 @@ function mainMenu()
   
 
 }
-function buildings()
+function game1()//picture buildings w/moving taxi
 {
   background(137, 207, 240);
-  currentTime = millis()/1000;
-  image(building,1300,815); //buildings
+  currentTime = millis();
+  image(building,width/2,height/2,1920,1080 ); //buildings
   fill(255);
-  textSize(60)
-  //text(currentTime,width/8,height/10); trouble shooting
-  //text(savedTime ,width/8,height/8);
-  text(`${round(currentTime, 2)}`, 5, 50, 90);
-  timer =10;
+  textSize(20)
+  text(`${round(currentTime/1000, 2)}`, 5, 50, 90);
+  timer =3000;
 
-  if(currentTime-savedTime >= timer)//want it to happen every 10 seconds 
+  if(currentTime-savedTime > timer || taxiX>0)//want it to happen every 10 seconds 
   {
-    image(taxi,taxiX+=5,taxiY); //code to have taxi move across 
-    if(taxiX>width)
+    image(taxi,taxiX,taxiY); 
+   if(taxiX<width)
+    {
+      taxiX +=10;
+    }
+    else 
     {
       taxiX =0; //rest taxi when reached end
-    }
-    savedTime=currentTime;
+    } 
+      savedTime=currentTime;
   }
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
+  
+  
 
   
 }
-function homemadeBuildings()
+function homemadeBuildings()//ex homemade buildings
 {
 fill(0,0,200);
 rect(0,0,width,height);
@@ -209,18 +223,7 @@ rect(0,0,width,height);
     winB = 191;
   }
 }
-function game1()
-{
-  fill(255);
-  rect(0,0,width,height);
-  fill(0);
-  textSize(50)
-  text('game 1',width/2,height/2);
-  if(keyIsDown(82)===true)//r to reset
-  {
-    scene = mainMenu;
-  }
-}
+
 function game2()
 {
   fill(255);
