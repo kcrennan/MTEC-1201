@@ -26,10 +26,11 @@ let roadB = 1000;
 let roadC = 1600;
 let roadD = 300;
 let roadE = 540;
-let parkX = 350;
+let parkX = 250;
 let parkY = 130;
 let offset = 50;
 let scene = mainMenu;
+let game3X =mousex;
 
 
 
@@ -43,7 +44,6 @@ function setup()
   createCanvas(1920, 1080);
   imageMode(CENTER);
 }
-
 function draw() 
 {
   scene();
@@ -59,36 +59,58 @@ else if(mouseX>700 && mouseX<900 && mouseY>620 &&mouseY<1020 && scene===mainMenu
 else if(mouseX>1100 && mouseX<1500 && mouseY>360 &&mouseY<480 && scene===mainMenu)
   {
     scene = game3;
+    background(0);
   }
 else if(mouseX>1675 && mouseX<1875 && mouseY>600 &&mouseY<1000 && scene===mainMenu)
   {
      scene = endScene;
   }
+  if(scene===game3 && mouseY>899)
+{
+ buildingMaker();
+}
 
 }
 function mainMenu()
 {
   strokeWeight(1);
-  fill(112,41,99);
+  fill(19,80,41);
   rect(0,0,width,height);
   strokeWeight(100);
   line(roadA,0,roadA,1600);
   line(roadB,0,roadB,1600);
   line(roadC,0,roadC,1600);
   line(0,roadD,3000,roadD);
-  line(0,roadE,3000,roadE);//
+  line(0,roadE,3000,roadE);
   strokeWeight(10);
-  rect(50,30,400,200);//start
-  rect(50,620,400,400);//game1
-  rect(700,620,200,400);//game2
-  rect(1100,360,400,120);//game3
-  rect(1675,600,200,400);//end
   fill(0);
+  rect(50,30,400,200);//start
+  fill(0,0,53);//navybluep
+  rect(50,620,400,400);//game1
+  fill(10,10,160);
+  rect(150,920,200,100);
+  line(250,920,250,1020);
+  fill(143,37,75);//burgendy
+  rect(700,620,200,400);//game2
+  fill(120,37,50);
+  rect(775,920,50,100);
+  fill(0,101,109)//dark teal
+  rect(1100,360,400,120);//game3
+  fill(0,80,80);
+  rect(1200,420,200,60);
+  
+  fill(225);
+  rect(1675,600,200,400);//end
+  fill(0)
+  textSize(40)
+  text('The End', 1700,800);
   textSize(30);
-  text('move the car around ',660,30);
+  text('Move the car around ',660,30);
   text('with the mouse!',690, 70);
   text('Once near a building',660,120);
   text('click it to proceed!',680,160);
+  text('press "p" to park',680,220);
+
 
   if(mouseX>roadA-50 && mouseX<roadA+50 || mouseX>roadB-50 && mouseX<roadB+50 || mouseX>roadC-50 && mouseX<roadC+50)
     { 
@@ -102,9 +124,9 @@ function mainMenu()
       parkX = mouseX-offset;
       parkY = mouseY-offset;
     }
-  else if(keyIsDown(80)=== true)
+  else if(keyIsDown(80)=== true)//p
     {
-    parkX = 350;
+    parkX = 250;
     parkY = 130;
     }
   else
@@ -126,6 +148,7 @@ function game1()//picture buildings w/moving taxi
 
   if(currentTime-savedTime > timer || taxiX>0)//want it to happen every 10 seconds 
   {
+     
     image(taxi,taxiX,taxiY); 
    if(taxiX<width)
     {
@@ -141,12 +164,14 @@ function game1()//picture buildings w/moving taxi
   {
     scene = mainMenu;
   }
-  
+ textSize(40);
+  fill(0);
+  text('Press R to return to main menu!',1350,30);
   
 
   
 }
-function game2()//ex homemade buildings
+function game2()//ex homemade buildingsp
 {
 fill(0,0,200);
 rect(0,0,width,height);
@@ -157,8 +182,6 @@ rect(0,0,width,height);
   text('click and drag to make the moon move!', 530,30);
   text('press c to change the color!',300,50);
   text('press m to reset the color.c',310,70);
-
-
 //shrubfence thing
   strokeWeight(3);
   fill(92,169,4);//green    
@@ -223,30 +246,57 @@ rect(0,0,width,height);
   {
     scene = mainMenu;
   }
+  textSize(40);
+  fill(0);
+  text('Press R to return to main menu!',1350,50);
 }
 function game3()
 {
-  fill(255);
-  rect(0,0,width,height);
-  fill(0);
-  textSize(50)
-  text('game 3',width/2,height/2);
+  //fill(255);
+ // rect(0,0,width,height);
+
+ strokeWeight(3);
+  fill(92,169,4);//green    
+  rect(0,900,1920,180);
+
+  fill(240,240,191); //yellow
+  circle(mouseX,mouseY,80); // moon on top right
+
+
+
+
+ 
   if(keyIsDown(82)===true)//r to reset
   {
     scene = mainMenu;
   }
+  textSize(40);
+  fill(255);
+  text('Press R to return to main menu!',1350,50);
+  text('click on the green bar',50,50)
+  text('to create buildings!',50,90)
+}
+function buildingMaker()
+{
+  strokeWeight(20);
+  fill(random(0,255),random(0,255),random(0,255));
+  rect(mouseX,random(60,1080),random(40,250),900); //
 }
 function endScene()
 {
   fill(255);
-  rect(0,0,width,height)
-  fill(0)
-  textSize(50)
-  text('The End!',width/2,height/2);
+  rect(0,0,width,height);
+ 
+  fill(0);
+  textSize(100);
+  text('The End!',width/2-80,height/2);
   if(keyIsDown(82)===true)//r to reset
   {
     scene = mainMenu;
   }
+  textSize(40);
+  fill(0);
+  text('Press R to return to main menu!',1350,50);
 }
 function mouseDragged(){
     moonX ++;
@@ -268,6 +318,15 @@ function keyPressed(){//changes color of building 2
 
 
 /*
+textSize(40);
+fill(0);
+text('Press R to return to main menu!',1800,30);
+
+
+
+
+
+
 stroke weight 130, so -65 and +65
 
 
