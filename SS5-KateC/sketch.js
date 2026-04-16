@@ -15,33 +15,18 @@ Include as a comment at the top of your sketch: your name, title, any instructio
 function setup()
 {
   createCanvas(1000, 1000);
+noFill();
+rectMode(CENTER);
 }
 
 function draw() 
 {
-  background(220);
-  //blue building
-  strokeWeight(5);
-  fill(0,0,100);//blue
-  rect(40,540,200,460); // blue outlined rect on left side
-
-//blue building doors
-  strokeWeight(3);
-  fill(0,0,200); //lighter blue
-  rect(100,930,80,70);//doors
-  line(140,930,140,1000);//line seperating doors
-
- //windows blue building
-  fill(255,255,191);//window color
-  rect(80,550,30,50);//window 1R
-  rect(170,550,30,50);//window 1L
-  rect(80,620,30,50);//window 2R
-  rect(170,620,30,50);//window 2L
-  rect(80,690,30,50);// window 3R
-  rect(170,690,30,50);//window 3L
-  rect(80,760,30,50);//window 4R
-  rect(170,760,30,50);//window 4L
-  rect(80,830,30,50);//window 5R
-  rect(170,830,30,50);//window 5L
+  if(pmouseX!=mouseX && pmouseY!=mouseY ){
+for (let i = 20; i < width; i +=20 )
+  {
+  stroke(random(0,255),random(0,255),random(0,255));
+  ellipse(mouseX,mouseY,i,i);
+}
+  }
 
 }
