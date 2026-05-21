@@ -1,10 +1,4 @@
-//Kate C MIDTERM WIP
-//
-// idk if i want to do something more interactive or passive
-// def wanna keep the city-scape concept i have going so far
-//maybe a game? city sim?
-//ooo like a map and you drive a car around and hit certain stops and interact with them
-//tint function works on images
+//final adjusted 
 //
 let currentTime = 0;
 let savedTime =0;
@@ -31,6 +25,12 @@ let parkY = 130;
 let offset = 50;
 let scene = mainMenu;
 let game3X =mousex;
+let h ;
+let w ;
+let color;
+let genBuild = new buildingClass(mouseX,mouseY,w,h,color);
+let w1x = 1350;
+let w1y = 245;
 
 
 
@@ -66,11 +66,22 @@ else if(mouseX>1675 && mouseX<1875 && mouseY>600 &&mouseY<1000 && scene===mainMe
      scene = endScene;
   }
   if(scene===game3 && mouseY>899)
-{
- buildingMaker();
-}
+  {
+  //buildingMaker();
+  
+ //genBuild.create();
+  }
+  else if(scene===game3 && mouseY)//w1
+  {
+    w = 40; 
+  }
+   else if(scene===game3 && mouseY)//w2
+  {
+    w = 80; 
+  }
 
 }
+
 function mainMenu()
 {
   strokeWeight(1);
@@ -252,15 +263,24 @@ rect(0,0,width,height);
 }
 function game3()
 {
-  //fill(255);
- // rect(0,0,width,height);
+ 
 
  strokeWeight(3);
   fill(92,169,4);//green    
   rect(0,900,1920,180);
+  fill(173,216,230);
+  rect(1300,0,720,1090);// menu
+  fill(0);
+  rect(1350,100,200,200);
+  rect(1650, 100,200,200);
+  rect(1350,350,200,200);
+  rect(1650,350,200,200);
+  rect(1350,600,150,200);
+  rect (1550,600,150,200);
+  rect(1750,600,150,200);
 
-  fill(240,240,191); //yellow
-  circle(mouseX,mouseY,80); // moon on top right
+
+
 
 
 
@@ -281,6 +301,25 @@ function buildingMaker()
   strokeWeight(20);
   fill(random(0,255),random(0,255),random(0,255));
   rect(mouseX,random(60,1080),random(40,250),900); //
+}
+class buildingClass 
+{
+  constructor(x,y,width,height,color)
+  {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.color = color;
+  }
+  create()
+  {
+    fill = (color);
+    rect = (x,y,width,height);
+
+  }
+
+
 }
 function endScene()
 {
