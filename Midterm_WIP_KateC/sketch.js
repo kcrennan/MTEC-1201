@@ -28,9 +28,11 @@ let game3X =mousex;
 let h ;
 let w ;
 let color;
-let genBuild = new buildingClass(mouseX,mouseY,w,h,color);
-let w1x = 1350;
-let w1y = 245;
+let genBuild = [];
+let bColor = color
+genBuild = new buildingClass(mouseX/2,mouseY,w,h,bColor);
+//genBuild.push
+
 
 
 
@@ -49,7 +51,8 @@ function draw()
   scene();
 }
 function mouseClicked(){
-if(mouseX>50 && mouseX<450 && mouseY>620 &&mouseY<1020 && scene===mainMenu)  {
+if(mouseX>50 && mouseX<450 && mouseY>620 &&mouseY<1020 && scene===mainMenu) 
+  {
    scene = game1;
   }
 else if(mouseX>700 && mouseX<900 && mouseY>620 &&mouseY<1020 && scene===mainMenu)
@@ -59,25 +62,41 @@ else if(mouseX>700 && mouseX<900 && mouseY>620 &&mouseY<1020 && scene===mainMenu
 else if(mouseX>1100 && mouseX<1500 && mouseY>360 &&mouseY<480 && scene===mainMenu)
   {
     scene = game3;
-    background(0);
+    //background(0);
   }
 else if(mouseX>1675 && mouseX<1875 && mouseY>600 &&mouseY<1000 && scene===mainMenu)
   {
      scene = endScene;
   }
-  if(scene===game3 && mouseY>899)
-  {
-  //buildingMaker();
   
- //genBuild.create();
-  }
-  else if(scene===game3 && mouseY)//w1
+  //custom building menu
+  if(scene===game3 && mouseX>1349 && mouseX<1551 && mouseY>99 && mouseY<301 )//w1
   {
     w = 40; 
-  }
-   else if(scene===game3 && mouseY)//w2
+text(width/2,height/2,"40")  }
+   else if(scene===game3 && mouseX>1649 && mouseX<1851 && mouseY>99 && mouseY<301 )//w2
   {
     w = 80; 
+  }
+  else if(scene===game3 && mouseX>1349 && mouseX<1551 && mouseY>349 && mouseY<551 )//h1
+  {
+    h = 300; 
+  }
+  else if(scene===game3 && mouseX>1649 && mouseX<1851 && mouseY>349 && mouseY<551  )//h2
+  {
+    h = 600; 
+  }
+    else if(scene===game3 && mouseX>1349 && mouseX<1501 && mouseY>599 && mouseY<801  )//c1
+  {
+    color = ('#1656AD'); 
+  }
+    else if(scene===game3 && mouseX>1549 && mouseX<1701 && mouseY>599 && mouseY<801  )//c2
+  {
+    color = ('#008000'); 
+  }
+    else if(scene===game3 && mouseX>1749 && mouseX<1901 && mouseY>599 && mouseY<801  )//c3
+  {
+    color = ('#800080'); 
   }
 
 }
@@ -263,29 +282,38 @@ rect(0,0,width,height);
 }
 function game3()
 {
- 
-
  strokeWeight(3);
   fill(92,169,4);//green    
   rect(0,900,1920,180);
   fill(173,216,230);
   rect(1300,0,720,1090);// menu
   fill(0);
-  rect(1350,100,200,200);
-  rect(1650, 100,200,200);
-  rect(1350,350,200,200);
-  rect(1650,350,200,200);
-  rect(1350,600,150,200);
-  rect (1550,600,150,200);
-  rect(1750,600,150,200);
+  rect(1350,100,200,200);//w1
+  rect(1650,100,200,200);//w2
+  rect(1350,350,200,200);//h1
+  rect(1650,350,200,200);//h2
+  fill('#1656AD');
+  rect(1350,600,150,200);//c1
+  fill('#008000');
+  rect(1550,600,150,200);//c2
+  fill('#800080');
+  rect(1750,600,150,200);//c3
+  fill(255);
+  /*
+  text("thin");
+  text("thick");
+  text("short");
+  text("tall");
+  text("blue");
+  text("green");
+  text("purple");
+*/
+  if(keyIsDown(81)===true)//if q is down, create building
+  {
+  genBuild.create();
+  }
 
 
-
-
-
-
-
- 
   if(keyIsDown(82)===true)//r to reset
   {
     scene = mainMenu;
@@ -293,7 +321,7 @@ function game3()
   textSize(40);
   fill(255);
   text('Press R to return to main menu!',1350,50);
-  text('click on the green bar',50,50)
+  text('Press Q on the green bar',50,50)
   text('to create buildings!',50,90)
 }
 function buildingMaker()
@@ -314,8 +342,8 @@ class buildingClass
   }
   create()
   {
-    fill = (color);
-    rect = (x,y,width,height);
+    fill(this.color);
+    rect(this.x,this.y,this.width,this.height);
 
   }
 
