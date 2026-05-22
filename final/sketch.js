@@ -1,5 +1,5 @@
 //final adjusted 
-//
+//game 3 is the only working game
 let currentTime = 0;
 let savedTime =0;
 let timer;
@@ -27,7 +27,7 @@ let scene = mainMenu;
 let h ;
 let w ;
 let color;
-let genBuild;
+let genBuild = {};
 let bColor = color
 
 class BuildingClass 
@@ -40,29 +40,36 @@ class BuildingClass
     this.height = height;
     this.color = color;
   }
-  create()
+  Create()
   {
     fill(this.color);
     rect(this.x,this.y,this.width,this.height);
   }
 }
+function preload()
+{
+  building =  loadImage('/images/buildings.png');
+  taxi = loadImage('/images/taxi.png');
+}
 function setup() 
 {
   createCanvas(1920, 1080);
   imageMode(CENTER);
-
 }
-  genBuild = new BuildingClass(mouseX, mouseY, w, h, bColor);
-
 function draw() 
 {
   scene();
 }
-
-
 function mouseClicked(){
-
-if(mouseX>1100 && mouseX<1500 && mouseY>360 &&mouseY<480 && scene===mainMenu)
+if(mouseX>50 && mouseX<450 && mouseY>620 &&mouseY<1020 && scene===mainMenu) 
+  {
+   scene = game1;
+  }
+else if(mouseX>700 && mouseX<900 && mouseY>620 &&mouseY<1020 && scene===mainMenu)
+  {
+    scene = game2;
+  }
+else if(mouseX>1100 && mouseX<1500 && mouseY>360 &&mouseY<480 && scene===mainMenu)
   {
     scene = game3;
     background(0);
@@ -75,35 +82,42 @@ else if(mouseX>1675 && mouseX<1875 && mouseY>600 &&mouseY<1000 && scene===mainMe
   //custom building menu
   if(scene===game3 && mouseX>1349 && mouseX<1551 && mouseY>99 && mouseY<301 )//w1
   {
-    w = 40; 
+    w = 100; 
+    print('w40');
   }
    else if(scene===game3 && mouseX>1649 && mouseX<1851 && mouseY>99 && mouseY<301 )//w2
   {
-    w = 80; 
+    w = 400; 
+    print('w80');
   }
   else if(scene===game3 && mouseX>1349 && mouseX<1551 && mouseY>349 && mouseY<551 )//h1
   {
-    h = 300; 
+    h = 400; 
+    print('h300');
   }
   else if(scene===game3 && mouseX>1649 && mouseX<1851 && mouseY>349 && mouseY<551  )//h2
   {
-    h = 600; 
+    h = 800; 
+    print('h600');
   }
     else if(scene===game3 && mouseX>1349 && mouseX<1501 && mouseY>599 && mouseY<801  )//c1
   {
-    color = ('#1656AD'); 
+    bColor = '#1656AD'; 
+    print('c1');
   }
     else if(scene===game3 && mouseX>1549 && mouseX<1701 && mouseY>599 && mouseY<801  )//c2
   {
-    color = ('#008000'); 
+    bColor = '#008000'; 
+    print('c2');
   }
     else if(scene===game3 && mouseX>1749 && mouseX<1901 && mouseY>599 && mouseY<801  )//c3
   {
-    color = ('#800080'); 
+    bColor = '#800080'; 
+    print('c3');
+
   }
   
 }
-
 function mainMenu()
 {
   strokeWeight(1);
@@ -131,6 +145,21 @@ function mainMenu()
   rect(1100,360,400,120);//game3
   fill(0,80,80);
   rect(1200,420,200,60);
+
+ if(mouseX>roadA-65 && mouseX<roadA+65 || mouseX>roadB-65 && mouseX<roadB+65 || mouseX>roadC-65 && mouseX<roadC+65)
+    { 
+      image(taxi,mouseX,mouseY);
+    }
+ else if(mouseY>roadD-65 && mouseY<roadD+65 || mouseY>roadE-65 && mouseY<roadE+65)
+    {
+      image(taxi,mouseX,mouseY);
+    }
+  else
+    {
+      image(taxi,0,0);
+    }  
+
+
   
   fill(225);
   rect(1675,600,200,400);//end
@@ -144,16 +173,123 @@ function mainMenu()
   text('click it to proceed!',680,160);
   text('press "p" to park',680,220);
 
-
-
 }
-
-function game3()
+function game1()//picture buildings w/moving taxi
 {
+  background(137, 207, 240);
+  currentTime = millis();
+  image(building,width/2,height/2,1920,1080 ); //buildings
+  fill(255);
+  textSize(20)
+  text(`${round(currentTime/1000, 2)}`, 5, 50, 90);
+  timer =3000;
 
- strokeWeight(3);
+  if(currentTime-savedTime > timer || taxiX>0)//want it to happen every 10 seconds 
+  {
+     
+    image(taxi,taxiX,taxiY); 
+   if(taxiX<width)
+    {
+      taxiX +=10;
+    }
+    else 
+    {
+      taxiX =0; //rest taxi when reached end
+    } 
+      savedTime=currentTime;
+  }
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
+ textSize(40);
+  fill(0);
+  text('Press R to return to main menu!',1350,30);
+  
+
+  
+}
+function game2()//ex homemade buildingsp
+{
+fill(0,0,200);
+rect(0,0,width,height);
+  //text
+  textSize(15);
+  fill(255);
+  text('hover mouse over the building!',40,25);
+  text('click and drag to make the moon move!', 530,30);
+  text('press c to change the color!',300,50);
+  text('press m to reset the color.c',310,70);
+//shrubfence thing
+  strokeWeight(3);
   fill(92,169,4);//green    
   rect(0,900,1920,180);
+  //moon
+  strokeWeight(3);
+  fill(240,240,191); //yellow
+  circle(moonX,moonY,80); // moon on top right
+//blue building
+  strokeWeight(5);
+  fill(0,0,100);//blue
+  rect(40,540,200,460); // blue outlined rect on left side
+  //2nd building
+  fill(twoR,twoG,twoB);//newbuilding for ss3
+  rect(320,580,150, 420);
+//blue building doors
+  strokeWeight(3);
+  fill(0,0,200); //lighter blue
+  rect(100,930,80,70);//doors
+  line(140,930,140,1000);//line seperating doors
+ //2ndbuilding doors
+ fill(twoR+30,twoG+30,twoB+30);
+ rect(355,930,80,70);
+ line(395,930,395,1000);
+ //windows blue building
+  fill(winR,winG,winB);//window color
+  rect(80,550,30,50);//window 1R
+  rect(170,550,30,50);//window 1L
+  rect(80,620,30,50);//window 2R
+  rect(170,620,30,50);//window 2L
+  rect(80,690,30,50);// window 3R
+  rect(170,690,30,50);//window 3L
+  rect(80,760,30,50);//window 4R
+  rect(170,760,30,50);//window 4L
+  rect(80,830,30,50);//window 5R
+  rect(170,830,30,50);//window 5L
+  //windows building 2 
+  fill(255,255,191);
+  rect(340,600,30,50); //1R
+  rect(420,600,30,50); //1L
+  rect(340,670,30,50); //2R 
+  rect(420,670,30,50); //2L
+  rect(340,740,30,50); //3R
+  rect(420,740,30,50); //3L
+  rect(340,810,30,50); //4R
+  rect(420,810,30,50); //4L
+  if (mouseX>39  && mouseX <241 && mouseY>549 && mouseY<1001)//building coords
+  {
+    winR = 0;//if mouse is on building, lights turn off
+    winG = 0;
+    winB = 0;
+  }
+  else{
+    winR = 255;//else building on
+    winG = 255;
+    winB = 191;
+  }
+  if(keyIsDown(82)===true)//r to reset
+  {
+    scene = mainMenu;
+  }
+  textSize(40);
+  fill(0);
+  text('Press R to return to main menu!',1350,50);
+}
+function game3()//for final complete custom building game
+{
+ strokeWeight(3);
+  fill(92,169,4);//green    
+  rect(0,900,1920,180);//foreground
   fill(173,216,230);
   rect(1300,0,720,1090);// menu
   fill(0);
@@ -168,40 +304,50 @@ function game3()
   fill('#800080');
   rect(1750,600,150,200);//c3
   fill(255);
-  /*
-  text("thin");
-  text("thick");
-  text("short");
-  text("tall");
-  text("blue");
-  text("green");
-  text("purple");
+  text('thin',1400,200);
+  text('thick',1700,200);
+  text('short',1400,450);
+  text('tall',1700,450);
+  text('blue',1400,700);
+  text('green',1570,700);
+  text('purple',1770,700);
 
-  
-*/
+  genBuild = new BuildingClass(mouseX, mouseY, w, h, bColor);
+
   if(keyIsDown(81)===true){
-    genBuild.create();
+    genBuild.Create();//THIS SHOULD C
     print('building created');
   }
-  if(keyIsDown(82)===true)//r to reset
+  else if(keyIsDown(82)===true)//r to reset
   {
     scene = mainMenu;
   }
+  else{
+    scene = game3;
+  }
   textSize(40);
+  fill(0);
+  text('Click to customize your buildings!',1320,50);
   fill(255);
-  text('Press R to return to main menu!',1350,50);
-  text('Press Q on the green bar',50,50)
-  text('to create buildings!',50,90)
+  text('Press R to return to main menu!',1350,900);
+  text('Press Q to create buildings!',50,50)
 }
-
 function endScene()
 {
   fill(255);
   rect(0,0,width,height);
  
+  
+ 
+  for(let i = 1; i<width; i++){
+    noFill();
+    strokeWeight(1);
+    stroke('#800080');
+    rect(0,0,10*i,10*i);
+  }
   fill(0);
-  textSize(100);
-  text('The End!',width/2-80,height/2);
+  textSize(200);
+   text('The End!',width/2-400,height/2);
   if(keyIsDown(82)===true)//r to reset
   {
     scene = mainMenu;
@@ -210,7 +356,19 @@ function endScene()
   fill(0);
   text('Press R to return to main menu!',1350,50);
 }
-
-
-
-
+function mouseDragged(){
+    moonX ++;
+    moonY ++;
+  }
+function keyPressed(){//changes color of building 2
+  if(key === 'c'){
+    twoR = random(72, 231);
+    twoG = random(0, 170);
+    twoB = random(30, 255);
+  }
+  else if(key === 'm'){
+  twoR = 112;
+  twoG = 41;
+  twoB = 99;
+  }
+}
